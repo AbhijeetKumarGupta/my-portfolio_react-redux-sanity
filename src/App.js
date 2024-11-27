@@ -41,7 +41,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    client.fetch(groq`*[_type == "about" || _type == "images" || _type == "links" || _type == "contactInfo"]`).then((data) => {
+    client.fetch(groq`*[_type in ["about", "images", "links", "contactInfo"]]`).then((data) => {
       const dataObject = data.reduce((acc, item) => {
         if (item._type) {
           acc[item._type] = item;
